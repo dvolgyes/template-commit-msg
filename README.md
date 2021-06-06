@@ -6,7 +6,7 @@ Add to your .pre-commit-config.yaml:
 ```
 repos:
 -   repo: https://github.com/dvolgyes/template-commit-msg
-    rev: "v0.1.0"
+    rev: "v0.1"
     hooks:
     -   id: template-commit-msg
         args: ['--pattern=[]  (#)']
