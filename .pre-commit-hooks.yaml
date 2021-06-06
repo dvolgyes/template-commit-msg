@@ -1,7 +1,8 @@
--   id: pre-commit-sync
-    name: "pre-commit-sync"
-    description: "Keep files in sync between web and local repository."
-    entry: pre-commit-sync
+-   id: template-commit-msg
+    name: "template-commit-msg"
+    description: "Template for commit messages"
+    entry: template-commit-msg
     always_run: true
     language: python
-    minimum_pre_commit_version: 0.15.0
+    stages: ['prepare-commit-msg']
+    minimum_pre_commit_version: "1.16"

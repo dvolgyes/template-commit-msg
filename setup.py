@@ -3,9 +3,9 @@ from setuptools import setup
 
 
 setup(
-    name='pre_commit_sync',
-    description='Keeping files sync between web and git.',
-    url='https://github.com/dvolgyes/pre-commit-sync',
+    name='template_commit_msg',
+    description='Commit message template',
+    url='https://github.com/dvolgyes/template_commit_sync',
     version='0.1.1',
 
     author='David Volgyes',
@@ -25,7 +25,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'pre-commit-sync = pre_commit_sync.pre_commit_sync:main',
+            'template-commit-msg = template_commit_msg.template_commit_msg:main',
         ],
     },
 )

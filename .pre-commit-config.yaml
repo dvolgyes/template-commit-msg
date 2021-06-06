@@ -1,108 +1,26 @@
 repos:
--   repo: https://github.com/dvolgyes/pre-commit-sync
-    rev: "v0.2.0"
+-   repo: https://github.com/dvolgyes/template-commit-msg
+    rev: 37921ca59e6bfcdf6c72114aae86c7c79008f0cf
     hooks:
-    -   id: pre-commit-sync
-        args:  ['--sync=.pre-commit-config.yaml:https://raw.githubusercontent.com/dvolgyes/pre-commit-sync/master/.pre-commit-config.yaml',
-               '--sync=.gitignore:https://raw.githubusercontent.com/dvolgyes/pre-commit-sync/master/.gitignore',
-                ]
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.2.0
+    -   id: template-commit-msg
+        # use starting # to indicate 'empty by default'
+        args: ['--pattern=#[] ... (#)']
+        stages: ['prepare-commit-msg']
+-   repo: local
     hooks:
-    -   id: check-added-large-files
-    -   id: check-ast
-    -   id: check-case-conflict
-    -   id: check-docstring-first
-    -   id: check-executables-have-shebangs
-    -   id: check-json
-    -   id: check-merge-conflict
-    -   id: check-symlinks
-    -   id: check-toml
-    -   id: check-xml
-    -   id: check-vcs-permalinks
-    -   id: check-xml
-    -   id: check-yaml
-    -   id: debug-statements
-    -   id: detect-aws-credentials
-    -   id: detect-private-key
-    -   id: double-quote-string-fixer
-    -   id: end-of-file-fixer
-    -   id: requirements-txt-fixer
-    -   id: forbid-new-submodules
-    -   id: pretty-format-json
-    -   id: requirements-txt-fixer
-    -   id: mixed-line-ending
-    -   id: pretty-format-json
-        args: ['--autofix']
-    -   id: trailing-whitespace
--   repo: https://gitlab.com/pycqa/flake8
-    rev: 3.8.3
+    # e.g. [add] or [remove]
+    -   id: commit-type-field
+        name: check for qualifier field
+        language: pygrep
+        entry: '\A\[[a-zA-Z]+\]'
+        args: ["--multiline", "--negate"]
+        stages: [commit-msg]
+-   repo: local
     hooks:
-    -   id: flake8
-        additional_dependencies: [
-            flake8-2020,
-            flake8-bandit,
-            flake8-blind-except,
-            flake8-breakpoint,
-            flake8-broken-line,
-            flake8-bugbear,
-            flake8-builtins,
-            flake8-class-newline,
-            flake8-comprehensions,
-            flake8-commas,
-            flake8-debugger,
-            flake8-eradicate,
-            flake8-fixme,
-            flake8-if-expr,
-            flake8-logging-format,
-            flake8-markdown,
-            flake8-pathlib,
-            flake8-pep3101,
-            flake8-polyfill,
-            flake8-print,
-            flake8-pytest,
-            flake8-pytest-style,
-            flake8-quotes,
-            flake8-raise,
-            flake8-string-format,
-            flake8-super-call,
-            flake8-type-annotations,
-            flake8-use-fstring,
-            pep8-naming]
-        args: ['--max-line-length=140', '--ignore=E116,E203,E265,E800,E801,W503,N806,N812,N816']
-
--   repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.6.0
-    hooks:
-    -   id: python-check-blanket-noqa
-    -   id: python-no-eval
-    -   id: python-no-log-warn
-    -   id: rst-backticks
-
--   repo: https://github.com/asottile/pyupgrade
-    rev: v2.7.2
-    hooks:
-    -   id: pyupgrade
-        args: ['--py38-plus']
--   repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: v1.5.4
-    hooks:
-    -   id: autopep8
-        args: ['--ignore=E112,E115,E116,E261,E262,E265','--select=E226', '-aaa', '--max-line-lengt=140']
--   repo: https://github.com/asottile/dead
-    rev: v1.3.0
-    hooks:
-    -   id: dead
--   repo: https://github.com/lovesegfault/beautysh
-    rev: 6.0.1
-    hooks:
-    -   id: beautysh
--   repo: https://github.com/detailyang/pre-commit-shell
-    rev: 1.0.5
-    hooks:
-    - id: shell-lint
-      args: [--format=json]
--   repo: https://github.com/markdownlint/markdownlint
-    rev: v0.11.0
-    hooks:
-    - id: markdownlint
+    # e.g. #7
+    -   id: issue-number-check
+        name: check for issue number
+        language: pygrep
+        entry: '#[0-9]+'
+        args: ["--multiline", "--negate"]
+        stages: [commit-msg]
