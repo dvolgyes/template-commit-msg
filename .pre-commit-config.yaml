@@ -1,6 +1,6 @@
 repos:
 -   repo: https://github.com/dvolgyes/template-commit-msg
-    rev: 37921ca59e6bfcdf6c72114aae86c7c79008f0cf
+    rev: 'v0.1'
     hooks:
     -   id: template-commit-msg
         # use starting # to indicate 'empty by default'
